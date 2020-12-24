@@ -16,9 +16,9 @@ const config = {
   production: {
     port: 3306,
     database: {
-      host: "us-cdbr-east-02.cleardb.com",
-      user: "b597a36a62bfb1",
-      password: "584ef1e9",
+      host:  process.env.HOSTADD,     
+      user: process.env.USERNA,     
+      password:  process.env.PASS,             
       database:'heroku_62c76f8cf73d61a'
     },
   },
@@ -41,6 +41,7 @@ config.initDB = (async () => {
   try {
     // await config.conn.query('USE miniproject');
     await config.conn.query('USE heroku_62c76f8cf73d61a');
+    // console.log(process.env.HOSTADD ,process.env.USERNA , process.env.PASS )
     const connection = await config.conn.query('SELECT * from users');
     console.log('db initialized');
     // console.log(connection);
